@@ -1,0 +1,117 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Engineering Tools</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <style>
+    @media print { .no-print{display:none!important} }
+  </style>
+</head>
+<body class="bg-zinc-50 text-zinc-900 selection:bg-yellow-200 min-h-screen flex flex-col">
+  <!-- Header -->
+  <header class="py-8">
+    <div class="max-w-3xl mx-auto px-4 text-center">
+      <!-- Icon to match the look of your image -->
+      <div class="mx-auto w-24 h-24 mb-4 rounded-2xl border-2 border-zinc-300 flex items-center justify-center">
+        <svg viewBox="0 0 64 64" class="w-14 h-14 text-sky-800">
+          <!-- stack -->
+          <g fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round">
+            <path d="M18 34l14 6 14-6-14-6-14 6z"/>
+            <path d="M18 40l14 6 14-6"/>
+            <path d="M18 28l14-6 14 6"/>
+            <!-- hook & jib -->
+            <circle cx="28" cy="20" r="3" fill="currentColor"/>
+            <path d="M28 17V10m0 13c0 4 5 4 5 8 0 3-2 5-5 5"/>
+            <path d="M32 14h18"/>
+          </g>
+        </svg>
+      </div>
+      <h1 class="text-2xl font-bold tracking-tight">Engineering Tools</h1>
+      <p class="text-zinc-600 mt-1">Quick launch hub for your calculators</p>
+    </div>
+  </header>
+
+  <!-- Main content -->
+  <main class="flex-1">
+    <div class="max-w-3xl mx-auto px-4">
+      <div class="grid gap-4">
+        <!-- Button: Loadspreader Calculator -->
+        <a target="_blank" rel="noopener" href="https://bretwalda98.github.io/Loadspreader_Unity_Checker/"
+           class="block w-full rounded-lg bg-sky-700 hover:bg-sky-800 active:bg-sky-900 transition text-white text-center py-3 shadow">
+          Loadspreader Calculator
+        </a>
+        <!-- Button: Wind Check (EN 13000) -->
+        <a target="_blank" rel="noopener" href="https://bretwalda98.github.io/Wind_Speed_Check_Tool_En13000/"
+           class="block w-full rounded-lg bg-sky-700 hover:bg-sky-800 active:bg-sky-900 transition text-white text-center py-3 shadow">
+          Wind Speed Check (EN 13000)
+        </a>
+      </div>
+
+      <!-- Optional: room for more tools -->
+      <div class="mt-8 text-center">
+        <button id="addBtn" class="no-print inline-flex items-center gap-2 px-4 py-2 rounded-lg border border-zinc-300 hover:bg-zinc-100 text-sm">Add more tools (edit JSON)</button>
+      </div>
+
+      <!-- Collapsible editor -->
+      <section id="editor" class="hidden mt-4 bg-white rounded-2xl border border-zinc-200 p-4">
+        <h2 class="font-semibold mb-2">Menu items (JSON)</h2>
+        <textarea id="jsonArea" class="w-full h-48 rounded-lg border border-zinc-300 p-2 font-mono text-sm"></textarea>
+        <div class="flex gap-2 mt-3">
+          <button id="applyBtn" class="px-3 py-2 rounded-lg bg-emerald-600 text-white hover:bg-emerald-700">Apply</button>
+          <button id="closeBtn" class="px-3 py-2 rounded-lg border border-zinc-300 hover:bg-zinc-100">Close</button>
+        </div>
+      </section>
+
+      <p class="text-xs text-zinc-500 mt-8 text-center">© Phoenix / Ingeniarch Labs — Tools Hub v0.1</p>
+    </div>
+  </main>
+
+  <script>
+    // Lightweight JSON-driven expansion if you want to add more links without hand-editing HTML
+    const defaultItems = [
+      { label: 'Loadspreader Calculator', url: 'https://bretwalda98.github.io/Loadspreader_Unity_Checker/' },
+      { label: 'Wind Speed Check (EN 13000)', url: 'https://bretwalda98.github.io/Wind_Speed_Check_Tool_En13000/' }
+    ];
+
+    const listContainer = document.querySelector('.grid');
+    function rebuild(items){
+      listContainer.innerHTML = '';
+      for (const it of items) {
+        const a = document.createElement('a');
+        a.className = 'block w-full rounded-lg bg-sky-700 hover:bg-sky-800 active:bg-sky-900 transition text-white text-center py-3 shadow';
+        a.target = '_blank';
+        a.rel = 'noopener';
+        a.href = it.url;
+        a.textContent = it.label;
+        listContainer.appendChild(a);
+      }
+    }
+
+    // Editor controls
+    const addBtn = document.getElementById('addBtn');
+    const editor = document.getElementById('editor');
+    const jsonArea = document.getElementById('jsonArea');
+    const applyBtn = document.getElementById('applyBtn');
+    const closeBtn = document.getElementById('closeBtn');
+
+    addBtn.addEventListener('click', ()=>{
+      editor.classList.remove('hidden');
+      jsonArea.value = JSON.stringify(defaultItems, null, 2);
+    });
+    closeBtn.addEventListener('click', ()=> editor.classList.add('hidden'));
+    applyBtn.addEventListener('click', ()=>{
+      try {
+        const items = JSON.parse(jsonArea.value);
+        rebuild(items);
+        editor.classList.add('hidden');
+      } catch(e){
+        alert('Invalid JSON');
+      }
+    });
+
+    rebuild(defaultItems);
+  </script>
+</body>
+</html>
