@@ -13,15 +13,13 @@
   <!-- Header -->
   <header class="py-8">
     <div class="max-w-3xl mx-auto px-4 text-center">
-      <!-- Icon to match the look of your image -->
+      <!-- Icon -->
       <div class="mx-auto w-24 h-24 mb-4 rounded-2xl border-2 border-zinc-300 flex items-center justify-center">
         <svg viewBox="0 0 64 64" class="w-14 h-14 text-sky-800">
-          <!-- stack -->
           <g fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round">
             <path d="M18 34l14 6 14-6-14-6-14 6z"/>
             <path d="M18 40l14 6 14-6"/>
             <path d="M18 28l14-6 14 6"/>
-            <!-- hook & jib -->
             <circle cx="28" cy="20" r="3" fill="currentColor"/>
             <path d="M28 17V10m0 13c0 4 5 4 5 8 0 3-2 5-5 5"/>
             <path d="M32 14h18"/>
@@ -47,6 +45,11 @@
            class="block w-full rounded-lg bg-sky-700 hover:bg-sky-800 active:bg-sky-900 transition text-white text-center py-3 shadow">
           Wind Speed Check (EN 13000)
         </a>
+        <!-- Button: 2D Frame/Beam Analysis Tool -->
+        <a target="_blank" rel="noopener" href="https://bretwalda98.github.io/Backbone---2D-frame-beam-analysis-tool/"
+           class="block w-full rounded-lg bg-sky-700 hover:bg-sky-800 active:bg-sky-900 transition text-white text-center py-3 shadow">
+          2D Frame/Beam Analysis Tool
+        </a>
       </div>
 
       <!-- Optional: room for more tools -->
@@ -64,15 +67,16 @@
         </div>
       </section>
 
-      <p class="text-xs text-zinc-500 mt-8 text-center">© Ingeniarch Labs — Tools Hub v0.1</p>
+      <p class="text-xs text-zinc-500 mt-8 text-center">© Ingeniarch Labs — Tools Hub v0.2</p>
     </div>
   </main>
 
   <script>
-    // Lightweight JSON-driven expansion if you want to add more links without hand-editing HTML
+    // JSON-driven list
     const defaultItems = [
       { label: 'Loadspreader Calculator', url: 'https://bretwalda98.github.io/Loadspreader_Unity_Checker/' },
-      { label: 'Wind Speed Check (EN 13000)', url: 'https://bretwalda98.github.io/Wind_Speed_Check_Tool_En13000/' }
+      { label: 'Wind Speed Check (EN 13000)', url: 'https://bretwalda98.github.io/Wind_Speed_Check_Tool_En13000/' },
+      { label: '2D Frame/Beam Analysis Tool', url: 'https://bretwalda98.github.io/Backbone---2D-frame-beam-analysis-tool/' }
     ];
 
     const listContainer = document.querySelector('.grid');
