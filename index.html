@@ -4,30 +4,32 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Engineering Tools</title>
+  <link rel="icon" type="image/png" href="icon.png" />
   <script src="https://cdn.tailwindcss.com"></script>
   <style>
     @media print { .no-print{display:none!important} }
+    body::before{
+      content:"";
+      position:fixed; inset:0; pointer-events:none; z-index:-1;
+      background:
+        radial-gradient(1200px 600px at 70% -10%, rgba(56,189,248,.12), transparent 60%),
+        radial-gradient(900px 500px at -10% -10%, rgba(168,85,247,.10), transparent 60%),
+        repeating-linear-gradient(0deg, rgba(148,163,184,.07) 0 1px, transparent 1px 48px),
+        repeating-linear-gradient(90deg, rgba(148,163,184,.07) 0 1px, transparent 1px 48px);
+      background-color:#0b1220;
+    }
   </style>
 </head>
-<body class="bg-zinc-50 text-zinc-900 selection:bg-yellow-200 min-h-screen flex flex-col">
+<body class="min-h-screen flex flex-col text-slate-100 selection:bg-cyan-500/30">
   <!-- Header -->
-  <header class="py-8">
+  <header class="py-10">
     <div class="max-w-3xl mx-auto px-4 text-center">
       <!-- Icon -->
-      <div class="mx-auto w-24 h-24 mb-4 rounded-2xl border-2 border-zinc-300 flex items-center justify-center">
-        <svg viewBox="0 0 64 64" class="w-14 h-14 text-sky-800">
-          <g fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round">
-            <path d="M18 34l14 6 14-6-14-6-14 6z"/>
-            <path d="M18 40l14 6 14-6"/>
-            <path d="M18 28l14-6 14 6"/>
-            <circle cx="28" cy="20" r="3" fill="currentColor"/>
-            <path d="M28 17V10m0 13c0 4 5 4 5 8 0 3-2 5-5 5"/>
-            <path d="M32 14h18"/>
-          </g>
-        </svg>
+      <div class="mx-auto w-24 h-24 mb-4 rounded-2xl border border-slate-700/70 bg-slate-900/60 flex items-center justify-center shadow-[0_10px_30px_rgba(0,0,0,.35)] overflow-hidden">
+        <img src="icon.png" alt="Engineering Tools Icon" class="w-20 h-20 object-contain">
       </div>
-      <h1 class="text-2xl font-bold tracking-tight">Engineering Tools</h1>
-      <p class="text-zinc-600 mt-1">Quick launch hub for your calculators</p>
+      <h1 class="text-3xl font-extrabold tracking-tight">Engineering Tools</h1>
+      <p class="text-slate-400 mt-1">Quick launch hub for your calculators</p>
     </div>
   </header>
 
@@ -35,64 +37,59 @@
   <main class="flex-1">
     <div class="max-w-3xl mx-auto px-4">
       <div class="grid gap-4">
-        <!-- Button: Loadspreader Calculator -->
         <a target="_blank" rel="noopener" href="https://bretwalda98.github.io/Loadspreader_Unity_Checker/"
-           class="block w-full rounded-lg bg-sky-700 hover:bg-sky-800 active:bg-sky-900 transition text-white text-center py-3 shadow">
+           class="block w-full rounded-xl bg-sky-700 hover:bg-sky-600 active:bg-sky-800 transition text-white text-center py-3 shadow">
           Loadspreader Calculator
         </a>
-        <!-- Button: Wind Check (EN 13000) -->
         <a target="_blank" rel="noopener" href="https://bretwalda98.github.io/Wind_Speed_Check_Tool_En13000/"
-           class="block w-full rounded-lg bg-sky-700 hover:bg-sky-800 active:bg-sky-900 transition text-white text-center py-3 shadow">
+           class="block w-full rounded-xl bg-sky-700 hover:bg-sky-600 active:bg-sky-800 transition text-white text-center py-3 shadow">
           Wind Speed Check (EN 13000)
         </a>
-        <!-- Button: 2D Frame/Beam Analysis Tool -->
         <a target="_blank" rel="noopener" href="https://bretwalda98.github.io/Backbone---2D-frame-beam-analysis-tool/"
-           class="block w-full rounded-lg bg-sky-700 hover:bg-sky-800 active:bg-sky-900 transition text-white text-center py-3 shadow">
+           class="block w-full rounded-xl bg-sky-700 hover:bg-sky-600 active:bg-sky-800 transition text-white text-center py-3 shadow">
           2D Frame/Beam Analysis Tool
         </a>
-        <!-- Button: Crane Slope Safety Calculator -->
         <a target="_blank" rel="noopener" href="https://bretwalda98.github.io/crane-slope-safety-calculator/"
-           class="block w-full rounded-lg bg-sky-700 hover:bg-sky-800 active:bg-sky-900 transition text-white text-center py-3 shadow">
+           class="block w-full rounded-xl bg-sky-700 hover:bg-sky-600 active:bg-sky-800 transition text-white text-center py-3 shadow">
           Crane Slope Safety Calculator
         </a>
-        <!-- Button: Climbing Jack Stability Tool -->
         <a target="_blank" rel="noopener" href="https://bretwalda98.github.io/Climbing-Jack-Stability-Tool/"
-           class="block w-full rounded-lg bg-sky-700 hover:bg-sky-800 active:bg-sky-900 transition text-white text-center py-3 shadow">
+           class="block w-full rounded-xl bg-sky-700 hover:bg-sky-600 active:bg-sky-800 transition text-white text-center py-3 shadow">
           Climbing Jack Stability Tool
         </a>
-        <!-- Button: Tail-Assist Tailing Load Calculator -->
         <a target="_blank" rel="noopener" href="https://bretwalda98.github.io/Tail-Assist-Tailing-Load-Calculator/"
-           class="block w-full rounded-lg bg-sky-700 hover:bg-sky-800 active:bg-sky-900 transition text-white text-center py-3 shadow">
+           class="block w-full rounded-xl bg-sky-700 hover:bg-sky-600 active:bg-sky-800 transition text-white text-center py-3 shadow">
           Tail-Assist Tailing Load Calculator
         </a>
-        <!-- Button: Padeye Structural Lug / Lifting Point Calculator -->
         <a target="_blank" rel="noopener" href="https://bretwalda98.github.io/Padeye-Structural-Lug-Lifting-Point-Calculator/"
-           class="block w-full rounded-lg bg-sky-700 hover:bg-sky-800 active:bg-sky-900 transition text-white text-center py-3 shadow">
+           class="block w-full rounded-xl bg-sky-700 hover:bg-sky-600 active:bg-sky-800 transition text-white text-center py-3 shadow">
           Padeye / Structural Lug Lifting Point Calculator
         </a>
       </div>
 
-      <!-- Optional: room for more tools -->
       <div class="mt-8 text-center">
-        <button id="addBtn" class="no-print inline-flex items-center gap-2 px-4 py-2 rounded-lg border border-zinc-300 hover:bg-zinc-100 text-sm">Add more tools (edit JSON)</button>
+        <button id="addBtn"
+          class="no-print inline-flex items-center gap-2 px-4 py-2 rounded-xl border border-slate-700 bg-slate-900/70 hover:bg-slate-800 text-sm text-slate-200 shadow">
+          Add more tools (edit JSON)
+        </button>
       </div>
 
       <!-- Collapsible editor -->
-      <section id="editor" class="hidden mt-4 bg-white rounded-2xl border border-zinc-200 p-4">
-        <h2 class="font-semibold mb-2">Menu items (JSON)</h2>
-        <textarea id="jsonArea" class="w-full h-48 rounded-lg border border-zinc-300 p-2 font-mono text-sm"></textarea>
+      <section id="editor" class="hidden mt-4 rounded-2xl border border-slate-700 bg-slate-900/70 p-4 shadow-lg">
+        <h2 class="font-semibold mb-2 text-slate-200">Menu items (JSON)</h2>
+        <textarea id="jsonArea"
+          class="w-full h-48 rounded-lg border border-slate-700 bg-slate-800 text-slate-100 p-2 font-mono text-sm"></textarea>
         <div class="flex gap-2 mt-3">
-          <button id="applyBtn" class="px-3 py-2 rounded-lg bg-emerald-600 text-white hover:bg-emerald-700">Apply</button>
-          <button id="closeBtn" class="px-3 py-2 rounded-lg border border-zinc-300 hover:bg-zinc-100">Close</button>
+          <button id="applyBtn" class="px-3 py-2 rounded-lg bg-emerald-600 text-white hover:bg-emerald-500">Apply</button>
+          <button id="closeBtn" class="px-3 py-2 rounded-lg border border-slate-700 bg-slate-800 hover:bg-slate-700 text-slate-200">Close</button>
         </div>
       </section>
 
-      <p class="text-xs text-zinc-500 mt-8 text-center">© Ingeniarch Labs — Tools Hub v0.5</p>
+      <p class="text-xs text-slate-400 mt-8 text-center">© Ingeniarch Labs — Tools Hub v0.6</p>
     </div>
   </main>
 
   <script>
-    // JSON-driven list
     const defaultItems = [
       { label: 'Loadspreader Calculator', url: 'https://bretwalda98.github.io/Loadspreader_Unity_Checker/' },
       { label: 'Wind Speed Check (EN 13000)', url: 'https://bretwalda98.github.io/Wind_Speed_Check_Tool_En13000/' },
@@ -108,7 +105,7 @@
       listContainer.innerHTML = '';
       for (const it of items) {
         const a = document.createElement('a');
-        a.className = 'block w-full rounded-lg bg-sky-700 hover:bg-sky-800 active:bg-sky-900 transition text-white text-center py-3 shadow';
+        a.className = 'block w-full rounded-xl bg-sky-700 hover:bg-sky-600 active:bg-sky-800 transition text-white text-center py-3 shadow';
         a.target = '_blank';
         a.rel = 'noopener';
         a.href = it.url;
@@ -117,7 +114,6 @@
       }
     }
 
-    // Editor controls
     const addBtn = document.getElementById('addBtn');
     const editor = document.getElementById('editor');
     const jsonArea = document.getElementById('jsonArea');
@@ -139,7 +135,6 @@
       }
     });
 
-    // Build from JSON so the static list and editor stay in sync
     rebuild(defaultItems);
   </script>
 </body>
