@@ -18,13 +18,14 @@
         repeating-linear-gradient(90deg, rgba(148,163,184,.07) 0 1px, transparent 1px 48px);
       background-color:#0b1220;
     }
+    /* Square tiles via native aspect-ratio (widely supported) */
+    .tile { aspect-ratio: 1 / 1; }
   </style>
 </head>
 <body class="min-h-screen flex flex-col text-slate-100 selection:bg-cyan-500/30">
   <!-- Header -->
   <header class="py-10">
     <div class="max-w-3xl mx-auto px-4 text-center">
-      <!-- Icon -->
       <div class="mx-auto w-24 h-24 mb-4 rounded-2xl border border-slate-700/70 bg-slate-900/60 flex items-center justify-center shadow-[0_10px_30px_rgba(0,0,0,.35)] overflow-hidden">
         <img src="icon.png" alt="Engineering Tools Icon" class="w-20 h-20 object-contain">
       </div>
@@ -35,41 +36,9 @@
 
   <!-- Main content -->
   <main class="flex-1">
-    <div class="max-w-3xl mx-auto px-4">
-      <div class="grid gap-4">
-        <a target="_blank" rel="noopener" href="https://bretwalda98.github.io/Loadspreader_Unity_Checker/"
-           class="block w-full rounded-xl bg-sky-700 hover:bg-sky-600 active:bg-sky-800 transition text-white text-center py-3 shadow">
-          Loadspreader Calculator
-        </a>
-        <a target="_blank" rel="noopener" href="https://bretwalda98.github.io/Wind_Speed_Check_Tool_En13000/"
-           class="block w-full rounded-xl bg-sky-700 hover:bg-sky-600 active:bg-sky-800 transition text-white text-center py-3 shadow">
-          Wind Speed Check (EN 13000)
-        </a>
-        <a target="_blank" rel="noopener" href="https://bretwalda98.github.io/Backbone---2D-frame-beam-analysis-tool/"
-           class="block w-full rounded-xl bg-sky-700 hover:bg-sky-600 active:bg-sky-800 transition text-white text-center py-3 shadow">
-          2D Frame/Beam Analysis Tool
-        </a>
-        <a target="_blank" rel="noopener" href="https://bretwalda98.github.io/crane-slope-safety-calculator/"
-           class="block w-full rounded-xl bg-sky-700 hover:bg-sky-600 active:bg-sky-800 transition text-white text-center py-3 shadow">
-          Crane Slope Safety Calculator
-        </a>
-        <a target="_blank" rel="noopener" href="https://bretwalda98.github.io/Climbing-Jack-Stability-Tool/"
-           class="block w-full rounded-xl bg-sky-700 hover:bg-sky-600 active:bg-sky-800 transition text-white text-center py-3 shadow">
-          Climbing Jack Stability Tool
-        </a>
-        <a target="_blank" rel="noopener" href="https://bretwalda98.github.io/Tail-Assist-Tailing-Load-Calculator/"
-           class="block w-full rounded-xl bg-sky-700 hover:bg-sky-600 active:bg-sky-800 transition text-white text-center py-3 shadow">
-          Tail-Assist Tailing Load Calculator
-        </a>
-        <a target="_blank" rel="noopener" href="https://bretwalda98.github.io/Padeye-Structural-Lug-Lifting-Point-Calculator/"
-           class="block w-full rounded-xl bg-sky-700 hover:bg-sky-600 active:bg-sky-800 transition text-white text-center py-3 shadow">
-          Padeye / Structural Lug Lifting Point Calculator
-        </a>
-        <a target="_blank" rel="noopener" href="https://bretwalda98.github.io/D-d-Check-Sling-Shackle-Visualiser/"
-           class="block w-full rounded-xl bg-sky-700 hover:bg-sky-600 active:bg-sky-800 transition text-white text-center py-3 shadow">
-          D/d Check Tool
-        </a>
-      </div>
+    <div class="max-w-5xl mx-auto px-4">
+      <!-- Tiles grid -->
+      <div id="tiles" class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-4"></div>
 
       <div class="mt-8 text-center">
         <button id="addBtn"
@@ -80,51 +49,76 @@
 
       <!-- Collapsible editor -->
       <section id="editor" class="hidden mt-4 rounded-2xl border border-slate-700 bg-slate-900/70 p-4 shadow-lg">
-        <h2 class="font-semibold mb-2 text-slate-200">Menu items (JSON)</h2>
+        <h2 class="font-semibold mb-2 text-slate-200">Menu items (JSON) <span class="text-slate-400 font-normal">(optional <code>"icon"</code> per item)</span></h2>
         <textarea id="jsonArea"
-          class="w-full h-48 rounded-lg border border-slate-700 bg-slate-800 text-slate-100 p-2 font-mono text-sm"></textarea>
+          class="w-full h-56 rounded-lg border border-slate-700 bg-slate-800 text-slate-100 p-2 font-mono text-sm"></textarea>
         <div class="flex gap-2 mt-3">
           <button id="applyBtn" class="px-3 py-2 rounded-lg bg-emerald-600 text-white hover:bg-emerald-500">Apply</button>
           <button id="closeBtn" class="px-3 py-2 rounded-lg border border-slate-700 bg-slate-800 hover:bg-slate-700 text-slate-200">Close</button>
         </div>
       </section>
 
-      <p class="text-xs text-slate-400 mt-8 text-center">© Ingeniarch Labs — Tools Hub v0.7</p>
+      <p class="text-xs text-slate-400 mt-8 text-center">© Ingeniarch Labs — Tools Hub v0.8</p>
     </div>
   </main>
 
   <script>
+    // Default items with suggested icon filenames (override via "icon" if yours differ)
     const defaultItems = [
-      { label: 'Loadspreader Calculator', url: 'https://bretwalda98.github.io/Loadspreader_Unity_Checker/' },
-      { label: 'Wind Speed Check (EN 13000)', url: 'https://bretwalda98.github.io/Wind_Speed_Check_Tool_En13000/' },
-      { label: '2D Frame/Beam Analysis Tool', url: 'https://bretwalda98.github.io/Backbone---2D-frame-beam-analysis-tool/' },
-      { label: 'Crane Slope Safety Calculator', url: 'https://bretwalda98.github.io/crane-slope-safety-calculator/' },
-      { label: 'Climbing Jack Stability Tool', url: 'https://bretwalda98.github.io/Climbing-Jack-Stability-Tool/' },
-      { label: 'Tail-Assist Tailing Load Calculator', url: 'https://bretwalda98.github.io/Tail-Assist-Tailing-Load-Calculator/' },
-      { label: 'Padeye / Structural Lug Lifting Point Calculator', url: 'https://bretwalda98.github.io/Padeye-Structural-Lug-Lifting-Point-Calculator/' },
-      { label: 'D/d Check Tool', url: 'https://bretwalda98.github.io/D-d-Check-Sling-Shackle-Visualiser/' }
+      { label: 'Loadspreader Calculator', url: 'https://bretwalda98.github.io/Loadspreader_Unity_Checker/', icon: 'loadspreader-calculator.png' },
+      { label: 'Wind Speed Check (EN 13000)', url: 'https://bretwalda98.github.io/Wind_Speed_Check_Tool_En13000/', icon: 'wind-speed-check-en-13000.png' },
+      { label: '2D Frame/Beam Analysis Tool', url: 'https://bretwalda98.github.io/Backbone---2D-frame-beam-analysis-tool/', icon: '2d-frame-beam-analysis-tool.png' },
+      { label: 'Crane Slope Safety Calculator', url: 'https://bretwalda98.github.io/crane-slope-safety-calculator/', icon: 'crane-slope-safety-calculator.png' },
+      { label: 'Climbing Jack Stability Tool', url: 'https://bretwalda98.github.io/Climbing-Jack-Stability-Tool/', icon: 'climbing-jack-stability-tool.png' },
+      { label: 'Tail-Assist Tailing Load Calculator', url: 'https://bretwalda98.github.io/Tail-Assist-Tailing-Load-Calculator/', icon: 'tail-assist-tailing-load-calculator.png' },
+      { label: 'Padeye / Structural Lug Lifting Point Calculator', url: 'https://bretwalda98.github.io/Padeye-Structural-Lug-Lifting-Point-Calculator/', icon: 'padeye-structural-lug.png' },
+      { label: 'D/d Check Tool', url: 'https://bretwalda98.github.io/D-d-Check-Sling-Shackle-Visualiser/', icon: 'd-d-check-tool.png' }
     ];
 
-    const listContainer = document.querySelector('.grid');
-    function rebuild(items){
-      listContainer.innerHTML = '';
-      for (const it of items) {
-        const a = document.createElement('a');
-        a.className = 'block w-full rounded-xl bg-sky-700 hover:bg-sky-600 active:bg-sky-800 transition text-white text-center py-3 shadow';
-        a.target = '_blank';
-        a.rel = 'noopener';
-        a.href = it.url;
-        a.textContent = it.label;
-        listContainer.appendChild(a);
-      }
-    }
-
+    // Helpers
+    const tilesContainer = document.getElementById('tiles');
     const addBtn = document.getElementById('addBtn');
     const editor = document.getElementById('editor');
     const jsonArea = document.getElementById('jsonArea');
     const applyBtn = document.getElementById('applyBtn');
     const closeBtn = document.getElementById('closeBtn');
 
+    function slugify(str){
+      return String(str)
+        .toLowerCase()
+        .replace(/&/g, ' and ')
+        .replace(/[^a-z0-9]+/g, '-')
+        .replace(/^-+|-+$/g, '');
+    }
+
+    function rebuild(items){
+      tilesContainer.innerHTML = '';
+      for (const it of items) {
+        const a = document.createElement('a');
+        a.href = it.url;
+        a.target = '_blank';
+        a.rel = 'noopener';
+        a.ariaLabel = it.label;
+
+        a.className = 'tile w-full rounded-2xl border border-slate-700 bg-slate-900/60 hover:bg-slate-800 active:bg-slate-900 transition shadow flex flex-col items-center justify-center p-4 text-center focus:outline-none focus:ring-2 focus:ring-cyan-500';
+
+        const img = document.createElement('img');
+        img.className = 'w-14 h-14 md:w-16 md:h-16 object-contain mb-2';
+        img.alt = `${it.label} icon`;
+        img.src = it.icon || `${slugify(it.label)}.png`;
+        img.onerror = () => { img.onerror = null; img.src = 'icon.png'; }; // fallback
+
+        const span = document.createElement('span');
+        span.textContent = it.label;
+        span.className = 'mt-1 text-sm md:text-base font-medium text-slate-100';
+
+        a.appendChild(img);
+        a.appendChild(span);
+        tilesContainer.appendChild(a);
+      }
+    }
+
+    // Editor controls
     addBtn.addEventListener('click', ()=>{
       editor.classList.remove('hidden');
       jsonArea.value = JSON.stringify(defaultItems, null, 2);
