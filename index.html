@@ -100,10 +100,10 @@
         a.rel = 'noopener';
         a.ariaLabel = it.label;
 
-        a.className = 'tile w-full rounded-2xl border border-slate-700 bg-slate-900/60 hover:bg-slate-800 active:bg-slate-900 transition shadow flex flex-col items-center justify-center p-4 text-center focus:outline-none focus:ring-2 focus:ring-cyan-500';
+        a.className = 'tile w-full rounded-2xl border border-slate-700 bg-slate-900/60 hover:bg-slate-800 active:bg-slate-900 transition shadow flex flex-col items-center justify-center p-6 md:p-7 text-center focus:outline-none focus:ring-2 focus:ring-cyan-500';
 
         const img = document.createElement('img');
-        img.className = 'w-14 h-14 md:w-16 md:h-16 object-contain mb-2';
+        img.className = 'w-20 h-20 md:w-24 md:h-24 lg:w-28 lg:h-28 object-contain mb-3';
         img.alt = `${it.label} icon`;
         img.src = it.icon || `${slugify(it.label)}.png`;
         img.onerror = () => { img.onerror = null; img.src = 'icon.png'; }; // fallback
