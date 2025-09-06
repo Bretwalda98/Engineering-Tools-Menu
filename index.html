@@ -18,7 +18,6 @@
         repeating-linear-gradient(90deg, rgba(148,163,184,.07) 0 1px, transparent 1px 48px);
       background-color:#0b1220;
     }
-    /* Make tiles perfect squares */
     .tile { aspect-ratio: 1 / 1; }
   </style>
 </head>
@@ -68,6 +67,7 @@
     // Default items. You can change or add an explicit "icon" filename per item.
     const defaultItems = [
       { label: 'Mini-CAD 2D', url: 'https://bretwalda98.github.io/Mini-CAD-2D/', icon: 'Mini-CAD-2D.png' },
+      { label: 'Mini-NEST 2D', url: 'https://bretwalda98.github.io/Mini-NEST-2D/', icon: 'Mini-NEST-2D.png' },
       { label: 'Loadspreader Calculator', url: 'https://bretwalda98.github.io/Loadspreader_Unity_Checker/', icon: 'loadspreader-calculator.png' },
       { label: 'Wind Speed Check (EN 13000)', url: 'https://bretwalda98.github.io/Wind_Speed_Check_Tool_En13000/', icon: 'wind-speed-check-en-13000.png' },
       { label: '2D Frame/Beam Analysis Tool', url: 'https://bretwalda98.github.io/Backbone---2D-frame-beam-analysis-tool/', icon: '2d-frame-beam-analysis-tool.png' },
@@ -112,7 +112,6 @@
         a.ariaLabel = it.label;
         a.title = (it.icon || `${slugify(it.label)}.png`); // hover to see expected filename
 
-        // Square tile with more padding and a minimum height to fit big icons
         a.className = 'tile min-h-[12rem] md:min-h-[14rem] w-full rounded-2xl border border-slate-700 bg-slate-900/60 hover:bg-slate-800 active:bg-slate-900 transition shadow flex flex-col items-center justify-center p-7 md:p-8 text-center focus:outline-none focus:ring-2 focus:ring-cyan-500';
 
         const img = document.createElement('img');
